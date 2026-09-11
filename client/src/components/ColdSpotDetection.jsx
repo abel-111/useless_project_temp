@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { sampleFrameBrightness } from '../utils/videoAnalysis';
 import EMFMeter from './EMFMeter';
 
@@ -12,7 +12,13 @@ export default function ColdSpotDetection({ file, onColdSpotUpdate, onEmfUpdate 
   const [spiking, setSpiking] = useState(false);
   const [videoReady, setVideoReady] = useState(false);
 
-  const videoUrl = file ? URL.createObjectURL(file) : '';
+  const videoUrl = useMemo(() => (file ? URL.createObjectURL(file) : ''), [file]);
+
+  useEffect(() => {
+    return () => {
+      if (videoUrl) URL.revokeObjectURL(videoUrl);
+    };
+  }, [videoUrl]);
 
   // Frame brightness sampling for cold spots
   useEffect(() => {

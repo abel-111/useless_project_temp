@@ -11,19 +11,20 @@ export default function WaveformVisualizer({ data, analyzing }) {
     const ctx = canvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
 
+    let w = canvas.clientWidth;
+    let h = canvas.clientHeight;
+
     const resize = () => {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
+      w = canvas.clientWidth;
+      h = canvas.clientHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
       ctx.scale(dpr, dpr);
     };
     resize();
+    window.addEventListener('resize', resize);
 
     const draw = () => {
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-
       ctx.clearRect(0, 0, w, h);
 
       if (data && data.length > 0) {
@@ -31,7 +32,6 @@ export default function WaveformVisualizer({ data, analyzing }) {
         const gap = 1;
 
         data.forEach((val, i) => {
-          // Add subtle animation
           const animatedVal = analyzing
             ? val * (0.7 + 0.3 * Math.sin((Date.now() / 200) + i * 0.3))
             : val;
@@ -40,7 +40,6 @@ export default function WaveformVisualizer({ data, analyzing }) {
           const x = i * barWidth;
           const y = (h - barHeight) / 2;
 
-          // Gradient color
           const gradient = ctx.createLinearGradient(x, y, x, y + barHeight);
           gradient.addColorStop(0, 'rgba(0, 255, 136, 0.8)');
           gradient.addColorStop(0.5, 'rgba(68, 136, 255, 0.6)');
@@ -50,7 +49,6 @@ export default function WaveformVisualizer({ data, analyzing }) {
           ctx.fillRect(x + gap / 2, y, barWidth - gap, barHeight);
         });
       } else if (analyzing) {
-        // Fake animated bars while loading
         const numBars = 60;
         const barWidth = w / numBars;
         for (let i = 0; i < numBars; i++) {
@@ -69,6 +67,7 @@ export default function WaveformVisualizer({ data, analyzing }) {
 
     draw();
     return () => {
+      window.removeEventListener('resize', resize);
       if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
     };
   }, [data, analyzing]);

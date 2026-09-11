@@ -2,94 +2,95 @@ import React from 'react';
 
 // Spectral avatar graphics corresponding to different ghost classes
 const GHOST_AVATARS = {
+  safe: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_15px_rgba(0,255,136,0.6)]">
+      <defs>
+        <radialGradient id="safeGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#00ff88" stopOpacity="0.8" />
+          <stop offset="70%" stopColor="#00552b" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#040406" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="45" fill="url(#safeGrad)" />
+      {/* Shield outline */}
+      <path d="M50 20 L75 32 V55 C75 72 50 85 50 85 C50 85 25 72 25 55 V32 Z" fill="#0c1f14" stroke="#00ff88" strokeWidth="2.5" />
+      {/* Friendly checkmark / living pulse */}
+      <path d="M38 52 L46 60 L64 42" stroke="#00ff88" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  ),
+  shadow_demon: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_20px_rgba(255,0,51,0.9)] animate-pulse">
+      <defs>
+        <radialGradient id="demonGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ff0033" stopOpacity="0.9" />
+          <stop offset="60%" stopColor="#660010" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#040406" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="46" fill="url(#demonGrad)" />
+      {/* Demonic Horned Skull Silhouette */}
+      <path d="M22 26 Q30 40 36 46 Q26 62 34 78 Q50 86 66 78 Q74 62 64 46 Q70 40 78 26 Q64 32 58 40 Q50 36 42 40 Q36 32 22 26 Z" fill="#120004" stroke="#ff0033" strokeWidth="2" />
+      {/* Bleeding hollow eyes */}
+      <circle cx="43" cy="54" r="4.5" fill="#ff0033" className="animate-ping" />
+      <circle cx="57" cy="54" r="4.5" fill="#ff0033" className="animate-ping" />
+      <circle cx="43" cy="54" r="2.5" fill="#ffffff" />
+      <circle cx="57" cy="54" r="2.5" fill="#ffffff" />
+      {/* Vicious screaming jaw */}
+      <path d="M40 68 Q50 62 60 68 Q50 78 40 68 Z" fill="#000000" stroke="#ff0033" strokeWidth="1.5" />
+      {/* Sharp teeth */}
+      <path d="M42 66 L45 70 L48 66 L51 70 L54 66 L57 70 L59 66" stroke="#ffffff" strokeWidth="1.2" fill="none" />
+    </svg>
+  ),
   poltergeist: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_15px_rgba(0,255,136,0.6)] animate-pulse">
+    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_18px_rgba(255,80,0,0.8)] animate-horror_shake">
       <defs>
         <radialGradient id="poltGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#00ff88" stopOpacity="0.9" />
-          <stop offset="50%" stopColor="#00bb66" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#0a0a0c" stopOpacity="0" />
+          <stop offset="0%" stopColor="#ff5500" stopOpacity="0.85" />
+          <stop offset="60%" stopColor="#661a00" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#040406" stopOpacity="0" />
         </radialGradient>
       </defs>
       <circle cx="50" cy="50" r="45" fill="url(#poltGrad)" />
-      <path d="M30 40 Q40 25 50 40 Q60 25 70 40 Q75 60 65 75 Q50 85 35 75 Q25 60 30 40 Z" fill="#00ff88" opacity="0.85" />
-      <circle cx="42" cy="48" r="4" fill="#0a0a0c" />
-      <circle cx="58" cy="48" r="4" fill="#0a0a0c" />
-      <ellipse cx="50" cy="62" rx="6" ry="9" fill="#0a0a0c" />
-      <path d="M25 75 Q35 90 45 78 Q55 90 65 78 Q75 90 85 75" stroke="#00ff88" strokeWidth="2.5" fill="none" opacity="0.7" />
+      {/* Erratic ghost shape */}
+      <path d="M28 36 Q40 18 52 36 Q64 18 72 36 Q80 58 68 76 Q50 90 32 76 Q20 58 28 36 Z" fill="#1c0700" stroke="#ff5500" strokeWidth="2" />
+      <ellipse cx="42" cy="46" rx="4" ry="7" fill="#ff5500" />
+      <ellipse cx="58" cy="46" rx="4" ry="7" fill="#ff5500" />
+      <ellipse cx="50" cy="65" rx="8" ry="12" fill="#000000" stroke="#ff5500" strokeWidth="1.5" />
     </svg>
   ),
-  shadow: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_15px_rgba(255,34,68,0.6)] animate-pulse">
+  cryo: (
+    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_18px_rgba(0,180,255,0.7)] animate-pulse">
       <defs>
-        <radialGradient id="shadGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#ff2244" stopOpacity="0.7" />
-          <stop offset="70%" stopColor="#440011" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#0a0a0c" stopOpacity="0" />
+        <radialGradient id="cryoGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#00b4ff" stopOpacity="0.8" />
+          <stop offset="70%" stopColor="#002244" stopOpacity="0.3" />
+          <stop offset="100%" stopColor="#040406" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <circle cx="50" cy="50" r="45" fill="url(#shadGrad)" />
-      <path d="M32 30 Q50 15 68 30 Q78 50 72 75 Q50 88 28 75 Q22 50 32 30 Z" fill="#140206" stroke="#ff2244" strokeWidth="2" />
-      <circle cx="43" cy="44" r="3.5" fill="#ff2244" className="animate-ping" />
-      <circle cx="57" cy="44" r="3.5" fill="#ff2244" className="animate-ping" />
-      <path d="M42 64 Q50 56 58 64" stroke="#ff2244" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-    </svg>
-  ),
-  wraith: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_15px_rgba(68,136,255,0.6)] animate-pulse">
-      <defs>
-        <radialGradient id="wraithGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#4488ff" stopOpacity="0.8" />
-          <stop offset="60%" stopColor="#113388" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#0a0a0c" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="50" cy="50" r="45" fill="url(#wraithGrad)" />
-      <path d="M35 32 Q50 18 65 32 Q74 55 64 78 Q50 92 36 78 Q26 55 35 32 Z" fill="#4488ff" opacity="0.8" />
-      <ellipse cx="44" cy="46" rx="3.5" ry="5" fill="#0a0a0c" />
-      <ellipse cx="56" cy="46" rx="3.5" ry="5" fill="#0a0a0c" />
-      <path d="M43 62 Q50 70 57 62" stroke="#0a0a0c" strokeWidth="3" fill="none" />
-      <path d="M22 65 Q15 45 28 35" stroke="#4488ff" strokeWidth="2" strokeDasharray="3,3" fill="none" />
-      <path d="M78 65 Q85 45 72 35" stroke="#4488ff" strokeWidth="2" strokeDasharray="3,3" fill="none" />
-    </svg>
-  ),
-  champion: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_18px_rgba(234,179,8,0.8)] animate-pulse">
-      <defs>
-        <radialGradient id="champGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#eab308" stopOpacity="0.9" />
-          <stop offset="60%" stopColor="#854d0e" stopOpacity="0.4" />
-          <stop offset="100%" stopColor="#0a0a0c" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="50" cy="50" r="45" fill="url(#champGrad)" />
-      {/* Crown */}
-      <polygon points="32,35 40,20 50,30 60,20 68,35" fill="#facc15" stroke="#ca8a04" strokeWidth="2" />
-      <path d="M35 38 Q50 25 65 38 Q74 60 64 80 Q50 92 36 80 Q26 60 35 38 Z" fill="#eab308" opacity="0.85" />
-      <ellipse cx="44" cy="48" rx="3.5" ry="4.5" fill="#0a0a0c" />
-      <ellipse cx="56" cy="48" rx="3.5" ry="4.5" fill="#0a0a0c" />
-      <path d="M43 65 Q50 72 57 65" stroke="#0a0a0c" strokeWidth="3" fill="none" strokeLinecap="round" />
-      {/* Golden stars / aura */}
-      <circle cx="22" cy="30" r="2" fill="#fef08a" className="animate-ping" />
-      <circle cx="78" cy="30" r="2" fill="#fef08a" className="animate-ping" />
-      <circle cx="50" cy="12" r="2.5" fill="#fef08a" />
+      <circle cx="50" cy="50" r="45" fill="url(#cryoGrad)" />
+      <path d="M34 30 Q50 14 66 30 Q76 55 64 80 Q50 94 36 80 Q24 55 34 30 Z" fill="#051525" stroke="#00b4ff" strokeWidth="2" />
+      <circle cx="44" cy="46" r="4" fill="#00b4ff" />
+      <circle cx="56" cy="46" r="4" fill="#00b4ff" />
+      {/* Frozen tears */}
+      <path d="M44 52 L44 64 M56 52 L56 64" stroke="#70d8ff" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M43 68 Q50 74 57 68" stroke="#00b4ff" strokeWidth="2" fill="none" />
     </svg>
   ),
   eldritch: (
-    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_18px_rgba(168,85,247,0.7)] animate-pulse">
+    <svg viewBox="0 0 100 100" className="w-20 h-20 filter drop-shadow-[0_0_22px_rgba(168,85,247,0.8)] animate-pulse">
       <defs>
         <radialGradient id="eldGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.8" />
-          <stop offset="70%" stopColor="#581c87" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#0a0a0c" stopOpacity="0" />
+          <stop offset="0%" stopColor="#a855f7" stopOpacity="0.85" />
+          <stop offset="70%" stopColor="#450a75" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#040406" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <circle cx="50" cy="50" r="45" fill="url(#eldGrad)" />
-      <circle cx="50" cy="50" r="26" fill="#2e1065" stroke="#c084fc" strokeWidth="2" />
-      <circle cx="50" cy="50" r="12" fill="#a855f7" />
-      <circle cx="50" cy="50" r="5" fill="#000" />
-      {/* Eye rays / tentacles */}
-      <path d="M20 50 Q10 30 25 15 M80 50 Q90 30 75 15 M50 20 Q30 5 50 2 M50 80 Q70 95 50 98" stroke="#c084fc" strokeWidth="2" fill="none" />
+      <circle cx="50" cy="50" r="46" fill="url(#eldGrad)" />
+      <circle cx="50" cy="50" r="26" fill="#1e053a" stroke="#c084fc" strokeWidth="2" />
+      <circle cx="50" cy="50" r="14" fill="#a855f7" />
+      <ellipse cx="50" cy="50" rx="4" ry="10" fill="#000000" />
+      {/* Void Tendrils */}
+      <path d="M18 50 Q8 28 24 14 M82 50 Q92 28 76 14 M50 18 Q28 4 50 2 M50 82 Q72 96 50 98" stroke="#c084fc" strokeWidth="2" fill="none" />
     </svg>
   ),
 };
@@ -97,115 +98,132 @@ const GHOST_AVATARS = {
 export default function ReportCard({ report }) {
   if (!report) return null;
 
-  const { verdict, severity, ghostName, threatClass, spectralSignature } = report;
-  const severityNum = typeof severity === 'number' ? severity : parseInt(severity) || 7;
+  const { verdict, severity, ghostName, threatClass, spectralSignature, isBenign } = report;
+  const severityNum = typeof severity === 'number' ? severity : parseInt(severity) || 5;
 
-  // Choose corresponding ghost visual style
-  let avatar = GHOST_AVATARS.poltergeist;
-  let themeBorder = 'border-ghost-green/40';
-  let badgeTitle = ghostName || 'Specter Apparition';
-  let badgeThreat = threatClass || 'Class IV Kinetic Anomaly';
+  const isSafe = isBenign || severityNum <= 3;
+  const isExtreme = severityNum >= 8;
 
-  if (badgeTitle.toLowerCase().includes('champion') || badgeTitle.toLowerCase().includes('athletic') || badgeTitle.toLowerCase().includes('arena')) {
-    avatar = GHOST_AVATARS.champion;
-    themeBorder = 'border-yellow-500/50';
-  } else if (badgeTitle.toLowerCase().includes('shadow')) {
-    avatar = GHOST_AVATARS.shadow;
-    themeBorder = 'border-ghost-red/40';
-  } else if (badgeTitle.toLowerCase().includes('widow') || badgeTitle.toLowerCase().includes('wraith')) {
-    avatar = GHOST_AVATARS.wraith;
-    themeBorder = 'border-blue-500/40';
-  } else if (badgeTitle.toLowerCase().includes('eldritch') || severityNum >= 9) {
+  // Pick avatar
+  let avatar = GHOST_AVATARS.shadow_demon;
+  let themeBorder = 'border-horror-red/80';
+  let badgeTitle = ghostName || 'Apparition Unknown';
+  let badgeThreat = threatClass || 'Class IV Entity';
+
+  if (isSafe) {
+    avatar = GHOST_AVATARS.safe;
+    themeBorder = 'border-ghost-green/60';
+  } else if (badgeTitle.toLowerCase().includes('poltergeist') || badgeTitle.toLowerCase().includes('kinetic')) {
+    avatar = GHOST_AVATARS.poltergeist;
+    themeBorder = 'border-orange-600/80';
+  } else if (badgeTitle.toLowerCase().includes('cryo') || badgeTitle.toLowerCase().includes('specter') || badgeTitle.toLowerCase().includes('widow')) {
+    avatar = GHOST_AVATARS.cryo;
+    themeBorder = 'border-cyan-500/80';
+  } else if (badgeTitle.toLowerCase().includes('eldritch') || badgeTitle.toLowerCase().includes('void') || severityNum >= 9) {
     avatar = GHOST_AVATARS.eldritch;
-    themeBorder = 'border-purple-500/40';
-  }
-
-  // Color based on severity
-  let barColor = 'from-ghost-green to-ghost-blue';
-  if (severityNum >= 8) {
-    barColor = 'from-ghost-red to-orange-500';
-  } else if (severityNum >= 5) {
-    barColor = 'from-yellow-500 to-orange-500';
+    themeBorder = 'border-purple-600/80';
   }
 
   return (
-    <div className={`spooky-card max-w-2xl w-full p-8 animate-slideUp relative overflow-hidden border ${themeBorder}`}>
-      {/* Decorative corner glyphs */}
-      <div className="absolute top-3 left-3 text-ghost-green/30 font-creepy text-lg">☠</div>
-      <div className="absolute top-3 right-3 text-ghost-green/30 font-creepy text-lg">☠</div>
-      <div className="absolute bottom-3 left-3 text-ghost-green/30 font-creepy text-lg">☠</div>
-      <div className="absolute bottom-3 right-3 text-ghost-green/30 font-creepy text-lg">☠</div>
+    <div className={`spooky-card max-w-2xl w-full p-8 animate-slideUp relative overflow-hidden border ${themeBorder} shadow-[0_0_50px_rgba(0,0,0,0.9)]`}>
+      {/* Decorative corner hazard markings */}
+      <div className="absolute top-3 left-3 font-mono text-xs opacity-40 text-horror-red">[01]</div>
+      <div className="absolute top-3 right-3 font-mono text-xs opacity-40 text-horror-red">[SEC-9]</div>
+      <div className="absolute bottom-3 left-3 font-mono text-xs opacity-40 text-horror-red">[ARCHIVE]</div>
+      <div className="absolute bottom-3 right-3 font-mono text-xs opacity-40 text-horror-red">[TOP-SECRET]</div>
 
-      {/* Header */}
+      {/* Header Dossier Stamp */}
       <div className="text-center mb-6">
-        <p className="font-typewriter text-xs text-ghost-mist/50 tracking-[0.3em] uppercase mb-1">
-          Confidential Paranormal Dossier
-        </p>
-        <h3 className="font-creepy text-3xl text-ghost-green text-glow-green">
-          GHOST DETECTOR VERDICT
+        <div className="inline-block px-3 py-1 mb-2 rounded border text-[10px] font-mono tracking-widest uppercase font-bold"
+          style={{
+            borderColor: isSafe ? '#00ff88' : '#ff0033',
+            color: isSafe ? '#00ff88' : '#ff0033',
+            backgroundColor: isSafe ? 'rgba(0, 255, 136, 0.08)' : 'rgba(255, 0, 51, 0.1)',
+          }}
+        >
+          {isSafe ? '✓ STATUS: 100% MORTAL / ZERO ENTITY PRESSURE' : '⚠️ STATUS: CRITICAL PARANORMAL CONTAMINATION'}
+        </div>
+        <h3 className={`font-creepy text-4xl sm:text-5xl tracking-widest ${isSafe ? 'text-ghost-green text-glow-green' : 'text-horror-red text-glow-red'}`}>
+          {isSafe ? 'OFFICIAL CLEARANCE REPORT' : 'PARANORMAL FORENSIC DOSSIER'}
         </h3>
-        <div className="mt-2 w-full h-px bg-gradient-to-r from-transparent via-ghost-border to-transparent" />
+        <div className="mt-2 w-full h-px bg-gradient-to-r from-transparent via-horror-border to-transparent" />
       </div>
 
-      {/* Ghost Identity Header with Visual Apparition Avatar */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 p-4 rounded-xl bg-ghost-dark/70 border border-ghost-border mb-6">
-        <div className="flex-shrink-0 flex items-center justify-center p-2 rounded-full bg-ghost-black/80 border border-ghost-border">
+      {/* Entity Profile Card */}
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-6 p-5 rounded-xl bg-horror-card border border-horror-border mb-6">
+        <div className="flex-shrink-0 flex items-center justify-center p-2 rounded-full bg-black/80 border border-horror-border">
           {avatar}
         </div>
         <div className="text-center sm:text-left flex-1">
-          <p className="text-xs uppercase tracking-widest text-ghost-mist/50 font-mono">Entity Identification</p>
-          <h4 className="text-xl sm:text-2xl font-creepy text-ghost-green tracking-wide">{badgeTitle}</h4>
-          <p className="text-xs text-purple-400 font-mono mt-1">⚠️ {badgeThreat}</p>
+          <p className="text-[10px] uppercase tracking-widest text-ghost-mist/50 font-mono">Forensic Classification</p>
+          <h4 className={`text-xl sm:text-2xl font-creepy tracking-wider ${isSafe ? 'text-ghost-green' : 'text-horror-red'}`}>
+            {badgeTitle}
+          </h4>
+          <p className="text-xs font-mono mt-1" style={{ color: isSafe ? '#00ff88' : '#ff5500' }}>
+            {isSafe ? '● ' : '⚠️ '}{badgeThreat}
+          </p>
           {spectralSignature && (
-            <p className="text-[11px] text-ghost-mist/60 font-mono mt-1">
-              Sig: <span className="text-cyan-300">{spectralSignature}</span>
+            <p className="text-[11px] text-ghost-mist/70 font-mono mt-1.5 leading-tight">
+              Spectrometry: <span className="text-horror-bone">{spectralSignature}</span>
             </p>
           )}
         </div>
       </div>
 
-      {/* Severity badge */}
+      {/* Severity Badge & Gauge */}
       <div className="text-center mb-6">
-        <p className="font-typewriter text-sm text-ghost-mist/50 mb-1">Haunting Severity Level</p>
-        <div className="severity-badge">{severityNum}/10</div>
+        <p className="font-typewriter text-xs uppercase tracking-widest text-ghost-mist/60 mb-1">
+          Haunting Severity Index
+        </p>
+        <div className={isSafe ? 'severity-badge-safe' : 'severity-badge'}>
+          {severityNum}/10
+        </div>
 
-        {/* Severity bar */}
-        <div className="w-56 h-2.5 bg-ghost-border rounded-full mx-auto mt-2 overflow-hidden shadow-inner">
+        {/* Severity Bar */}
+        <div className="w-64 h-3 bg-black rounded-full mx-auto mt-2 overflow-hidden border border-horror-border p-[1px]">
           <div
-            className={`h-full bg-gradient-to-r ${barColor} rounded-full transition-all duration-1000`}
-            style={{ width: `${severityNum * 10}%` }}
+            className={`h-full rounded-full transition-all duration-1000 ${
+              isSafe
+                ? 'bg-gradient-to-r from-ghost-green to-emerald-400'
+                : severityNum >= 8
+                  ? 'bg-gradient-to-r from-horror-blood via-horror-red to-orange-500 animate-pulse'
+                  : 'bg-gradient-to-r from-yellow-500 to-orange-500'
+            }`}
+            style={{ width: `${Math.max(10, severityNum * 10)}%` }}
           />
         </div>
 
-        <p className="font-creepy text-base mt-2 tracking-wide" style={{ color: severityNum >= 8 ? '#ff2244' : severityNum >= 5 ? '#eab308' : '#00ff88' }}>
-          {severityNum >= 9
-            ? '🔥 CATASTROPHIC CATACLYSMIC INVASION'
-            : severityNum >= 7
-              ? '⚠️ EXTREME PARANORMAL INFESTATION'
-              : severityNum >= 5
-                ? '⚡ SIGNIFICANT SPECTRAL ACTIVITY'
-                : '👁 RESIDUAL ENERGY TRACE'}
+        <p className="font-creepy text-lg mt-2 tracking-widest"
+          style={{ color: isSafe ? '#00ff88' : isExtreme ? '#ff0033' : '#eab308' }}
+        >
+          {isSafe
+            ? '✓ NORMAL UNHAUNTED REALM (SAFE)'
+            : severityNum >= 9
+              ? '🔥 CLASS VI APEX HORROR: FATAL HAZARD'
+              : severityNum >= 7
+                ? '⚠️ EXTREME PARANORMAL INFESTATION'
+                : '👁 MODERATE RESIDUAL SPIRITUAL ACTIVITY'}
         </p>
       </div>
 
       {/* Divider */}
       <div className="flex items-center gap-4 mb-6">
-        <div className="flex-1 h-px bg-ghost-border" />
-        <span className="text-ghost-mist/40 text-sm">✦ ✦ ✦</span>
-        <div className="flex-1 h-px bg-ghost-border" />
+        <div className="flex-1 h-px bg-horror-border/60" />
+        <span className="text-horror-red/40 text-sm">☠ ☠ ☠</span>
+        <div className="flex-1 h-px bg-horror-border/60" />
       </div>
 
-      {/* Verdict text */}
-      <div className="p-5 rounded-lg bg-ghost-black/40 border border-ghost-border/40 mb-4">
-        <p className="font-typewriter text-ghost-mist/90 leading-relaxed text-sm sm:text-base whitespace-pre-wrap">
+      {/* Investigator Verdict Text */}
+      <div className="p-5 rounded-lg bg-black/60 border border-horror-border/80 mb-4">
+        <p className="font-typewriter text-ghost-mist leading-relaxed text-sm sm:text-base whitespace-pre-wrap">
           {verdict}
         </p>
       </div>
 
       {/* Footer */}
-      <div className="mt-6 pt-4 border-t border-ghost-border/50 text-center">
-        <p className="font-typewriter text-xs text-ghost-mist/40">
-          Scanned with Ghost Detector — Team Omen & Iris • Paranormal Division
+      <div className="mt-6 pt-4 border-t border-horror-border/40 text-center">
+        <p className="font-mono text-[10px] text-ghost-mist/40 tracking-wider">
+          CLASSIFIED EVIDENCE RECORD • TEAM OMEN & IRIS PARANORMAL DIVISION
         </p>
       </div>
     </div>

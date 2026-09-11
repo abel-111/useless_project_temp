@@ -3,6 +3,7 @@ import LandingScreen from './components/LandingScreen';
 import ScanScreen from './components/ScanScreen';
 import ResultsScreen from './components/ResultsScreen';
 import SoundToggle from './components/SoundToggle';
+import GhostAtmosphere from './components/GhostAtmosphere';
 import { useSoundEffects } from './hooks/useSoundEffects';
 
 const SCREENS = {
@@ -15,7 +16,6 @@ export default function App() {
   const [screen, setScreen] = useState(SCREENS.LANDING);
   const [files, setFiles] = useState({ photo: null, video: null, audio: null });
   const [scanResults, setScanResults] = useState(null);
-  const [report, setReport] = useState(null);
   const { soundEnabled, toggleSound, playStatic, playDrone, playSting, stopDrone } = useSoundEffects();
 
   const handleFilesReady = useCallback((uploadedFiles) => {
@@ -25,26 +25,27 @@ export default function App() {
   const handleBeginScan = useCallback(() => {
     playStatic();
     setScreen(SCREENS.SCAN);
-    setTimeout(() => playDrone(), 500);
+    setTimeout(() => playDrone(), 400);
   }, [playStatic, playDrone]);
 
   const handleScanComplete = useCallback((results) => {
     stopDrone();
     setScanResults(results);
     setScreen(SCREENS.RESULTS);
-    setTimeout(() => playSting(), 300);
+    setTimeout(() => playSting(results?.isNormal), 400);
   }, [stopDrone, playSting]);
 
   const handleReset = useCallback(() => {
     setScreen(SCREENS.LANDING);
     setFiles({ photo: null, video: null, audio: null });
     setScanResults(null);
-    setReport(null);
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-ghost-black">
-      {/* CRT + Noise overlays */}
+    <div className="relative min-h-screen bg-horror-black overflow-hidden">
+      {/* Horror Overlays & Ghost Animations */}
+      <GhostAtmosphere />
+      <div className="horror-vignette" />
       <div className="crt-overlay" />
       <div className="noise-overlay" />
       <div className="fog-layer" />
