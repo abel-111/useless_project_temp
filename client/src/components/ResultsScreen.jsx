@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import ReportCard from './ReportCard';
 import { downloadReportAsImage, copyToClipboard } from '../utils/reportDownload';
+import { API_BASE_URL } from '../config';
 
 export default function ResultsScreen({ scanResults, files, onReset }) {
   const [report, setReport] = useState(null);
@@ -14,7 +15,7 @@ export default function ResultsScreen({ scanResults, files, onReset }) {
   useEffect(() => {
     const fetchReport = async () => {
       try {
-        const response = await fetch('/api/report', {
+        const response = await fetch(`${API_BASE_URL}/api/report`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(scanResults),

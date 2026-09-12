@@ -7,6 +7,8 @@ import { analyzeImageContent } from '../utils/imageAnalysis';
 const SCAN_DURATION = 10000; // 10 seconds
 const COMPILE_DURATION = 2500;
 
+import { API_BASE_URL } from '../config';
+
 export default function ScanScreen({ files, onScanComplete }) {
   const [phase, setPhase] = useState('scanning'); // scanning | compiling
   const [elapsed, setElapsed] = useState(0);
@@ -69,7 +71,7 @@ export default function ScanScreen({ files, onScanComplete }) {
           const base64 = reader.result.split(',')[1];
           const mediaType = files.photo.type || 'image/jpeg';
           try {
-            const response = await fetch('/api/analyze-photo', {
+            const response = await fetch(`${API_BASE_URL}/api/analyze-photo`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ image: base64, mediaType }),
